@@ -28,17 +28,91 @@
       <p id="currentDay" class="lead"></p>
     </header>
 
+    <!-- Time Blocks for main day -->
     <main class="container">
-      <!-- Timeblocks go here -->
+      <div class="row">
+        <div class="col-md-1 hour">9 AM</div>
+        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1 hour">10 AM</div>
+        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1 hour">11 AM</div>
+        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1 hour">12 PM</div>
+        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1 hour">1 PM</div>
+        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
+      </div> <div class="row">
+        <div class="col-md-1 hour">2 PM</div>
+        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1 hour">3 PM</div>
+        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1 hour" >4 PM</div>
+        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1 hour">5 PM</div>
+        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
+      </div>
     </main>
 
     <!-- Link to JQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- Link to Moment -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <!-- Javascript -->
+    <!-- JQuery -->
     <script>
+    // Variables
+    var currentDay = $('#currentDay')
+    var currentTime = moment().format('h:mm a')
+    var timeValues = ['9 a', '10 a', '11 a', '12 p', '1 p', '2 p', '3 p', '4 p', '5 p']
     
+    for (var i = 0; i < timeValues.length; i++){
+      var timeSlot = $('.hour').attr("id", [i])
+      
+      
+    }
+      
+    
+    // Top of Page displays current day and time
+    currentDay.text(moment().format('MMMM Do YYYY, h:mm a'))
+    
+    // Time Blocks change color based on hour of the day
+
+    
+    // When lock button is clicked, Event is saved to Local Storage
+
+    $('.fa-lock').on('click', function(){
+      var eventText = $('textarea').value
+
+      console.log(eventText)
+    })
+
+    
+
+
+
+
     </script>
   </body>
 </html>
