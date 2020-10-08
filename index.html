@@ -31,46 +31,46 @@
     <!-- Time Blocks for main day -->
     <main class="container">
       <div class="row">
-        <div class="col-md-1 hour">9 AM</div>
+        <div class="col-md-1 first hour" data-time="9">9 AM</div>
         <div class="col-md-10 time-block"><textarea></textarea></div>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
-        <div class="col-md-1 hour">10 AM</div>
+        <div class="col-md-1 second hour" data-time="10">10 AM</div>
         <div class="col-md-10 time-block"><textarea></textarea></div>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
-        <div class="col-md-1 hour">11 AM</div>
+        <div class="col-md-1 third hour" data-time="11">11 AM</div>
         <div class="col-md-10 time-block"><textarea></textarea></div>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
-        <div class="col-md-1 hour">12 PM</div>
+        <div class="col-md-1 fourth hour" data-time="12">12 PM</div>
         <div class="col-md-10 time-block"><textarea></textarea></div>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
-        <div class="col-md-1 hour">1 PM</div>
+        <div class="col-md-1 fifth hour" data-time="13">1 PM</div>
         <div class="col-md-10 time-block"><textarea></textarea></div>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div> <div class="row">
-        <div class="col-md-1 hour">2 PM</div>
+        <div class="col-md-1 sixth hour" data-time="14">2 PM</div>
         <div class="col-md-10 time-block"><textarea></textarea></div>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
-        <div class="col-md-1 hour">3 PM</div>
+        <div class="col-md-1 seventh hour" data-time="15">3 PM</div>
         <div class="col-md-10 time-block"><textarea></textarea></div>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
-        <div class="col-md-1 hour" >4 PM</div>
+        <div class="col-md-1 eight hour" data-time="16">4 PM</div>
         <div class="col-md-10 time-block"><textarea></textarea></div>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
-        <div class="col-md-1 hour">5 PM</div>
+        <div class="col-md-1 ninth hour" data-time="17">5 PM</div>
         <div class="col-md-10 time-block"><textarea></textarea></div>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
@@ -82,30 +82,72 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- JQuery -->
     <script>
+    
     // Variables
     var currentDay = $('#currentDay')
-    var currentTime = moment().format('h:mm a')
-    var timeValues = ['9 a', '10 a', '11 a', '12 p', '1 p', '2 p', '3 p', '4 p', '5 p']
+    var currentTime = moment().hours()
     
-    for (var i = 0; i < timeValues.length; i++){
-      var timeSlot = $('.hour').attr("id", [i])
+    //Time Slot variables
+    var amSlot1 = $('.first').data("time")
+    var amSlot2 = $('.second').data("time")
+    var amSlot3 = $('.third').data("time")
+    var pmSlot1 = $('.fourth').data("time")
+    var pmSlot2 = $('.fifth').data("time")
+    var pmSlot3 = $('.sixth').data("time")
+    var pmSlot4 = $('.seventh').data("time")
+    var pmSlot5 = $('.eight').data("time")
+    var pmSlot6 = $('.ninth').data("time")
+
+    // Arrays for each time slot's value and class
+    var timeSlotValueArr = [amSlot1, amSlot2, amSlot3, pmSlot1, pmSlot2, pmSlot3, pmSlot4, pmSlot5, pmSlot6]
+    var timeSlotClassArr = [$('.first'), $('.second'),$('.third'),$('.fourth'),$('.fifth'),$('.sixth'),$('.seventh'),$('.eight'),$('.ninth')]
+
+     // Time Blocks change color based on hour of the day
+
+    for (var i = 0; i < timeSlotValueArr.length; i++){
+
+        // Changes future time blocks to 'future' class 
+        if (currentTime < timeSlotValueArr[i] ) {
+         
+         timeSlotClassArr[i].parent().find('.time-block').addClass('future')
+        
+        // Changes present timeslot to 'present' class
+         } else if (currentTime === timeSlotValueArr[i]) {
+         
+         timeSlotClassArr[i].parent().find('.time-block').addClass('present')
+        
+        // Changes past timeslots to 'past' class
+        } else {
+
+          timeSlotClassArr[i].parent().find('.time-block').addClass('past')
+
+        }
       
       
     }
+    
       
     
-    // Top of Page displays current day and time
-    currentDay.text(moment().format('MMMM Do YYYY, h:mm a'))
+    // Top of Page displays current day
+    currentDay.text(moment().format('MMMM Do YYYY'))
     
-    // Time Blocks change color based on hour of the day
 
     
     // When lock button is clicked, Event is saved to Local Storage
 
     $('.fa-lock').on('click', function(){
-      var eventText = $('textarea').value
+      var eventText = $(this).parent().parent().find('textarea').val()
+      localStorage.setItem("event", JSON.stringify(eventText))
 
-      console.log(eventText)
+    })
+
+    // Loads Local Storage to page
+    function showEvents(){
+     return JSON.parse(localStorage.getItem("event"))
+    } 
+
+    $('textarea').each(function(){
+      $('textarea').text(showEvents())
     })
 
     
