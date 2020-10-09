@@ -32,46 +32,47 @@
     <main class="container">
       <div class="row">
         <div class="col-md-1 first hour" data-time="9">9 AM</div>
-        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <textarea class="col-md-10 time-block"></textarea>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
         <div class="col-md-1 second hour" data-time="10">10 AM</div>
-        <div class="col-md-10 time-block"><textarea></textarea></div>
+       <textarea class="col-md-10 time-block"></textarea>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
         <div class="col-md-1 third hour" data-time="11">11 AM</div>
-        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <textarea class="col-md-10 time-block"></textarea>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
         <div class="col-md-1 fourth hour" data-time="12">12 PM</div>
-        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <textarea class="col-md-10 time-block"></textarea>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
         <div class="col-md-1 fifth hour" data-time="13">1 PM</div>
-        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <textarea class="col-md-10 time-block"></textarea>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
-      </div> <div class="row">
+      </div> 
+      <div class="row">
         <div class="col-md-1 sixth hour" data-time="14">2 PM</div>
-        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <textarea class="col-md-10 time-block"></textarea>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
         <div class="col-md-1 seventh hour" data-time="15">3 PM</div>
-        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <textarea class="col-md-10 time-block"></textarea>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
         <div class="col-md-1 eight hour" data-time="16">4 PM</div>
-        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <textarea class="col-md-10 time-block"></textarea>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
       <div class="row">
         <div class="col-md-1 ninth hour" data-time="17">5 PM</div>
-        <div class="col-md-10 time-block"><textarea></textarea></div>
+        <textarea class="col-md-10 time-block"></textarea>
         <div class="col-md-1 saveBtn"><i class="fas fa-lock"></i></div>
       </div>
     </main>
@@ -134,21 +135,34 @@
 
     
     // When lock button is clicked, Event is saved to Local Storage
+    
+
 
     $('.fa-lock').on('click', function(){
-      var eventText = $(this).parent().parent().find('textarea').val()
-      localStorage.setItem("event", JSON.stringify(eventText))
+      var storedItems = []
+      for (var i = 0; i < timeSlotClassArr.length; i++){
+        storedItems[i] = timeSlotClassArr[i].parent().find('textarea').val()
+      }
+      localStorage.setItem("events", JSON.stringify(storedItems))
+      // var event = $(this).parent().parent().find('textarea').val()
+      // var time = $(this).parent().parent().find('.hour').attr('data-time')
+
+      // localStorage.setItem("event", JSON.stringify(eventText))
+      console.log(timeSlotClassArr)
 
     })
 
     // Loads Local Storage to page
     function showEvents(){
-     return JSON.parse(localStorage.getItem("event"))
+     var retrievedEvents = JSON.parse(localStorage.getItem("events"))
+      
+    //  for (var x = 0; x < timeSlotClassArr.length; x++){
+    //    timeSlotClassArr[i].parent().find('textarea').text(retrievedEvents[i])
+    //  }
+    console.log(timeSlotClassArr)
     } 
 
-    $('textarea').each(function(){
-      $('textarea').text(showEvents())
-    })
+    showEvents()
 
     
 

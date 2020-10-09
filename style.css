@@ -2,6 +2,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+  cursor: pointer;
 }
 
 textarea{
@@ -11,6 +12,11 @@ textarea{
   color: #000000;
   border-left: 1px solid black;
   padding: 10px;
+}
+
+.fa-lock{
+  margin-top: 28px;
+  margin-left: 15px;
 }
 
 .jumbotron {
@@ -41,11 +47,12 @@ textarea{
   color: #000000;
   border-top: 1px dashed #000000;
   text-align: justify;
+  padding-top: 10px;
 }
 
 .past {
   background-color: #d3d3d3;
-  color: white;
+  color: black;
 }
 
 .present {
