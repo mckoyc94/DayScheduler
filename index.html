@@ -156,9 +156,9 @@
     function showEvents(){
      var retrievedEvents = JSON.parse(localStorage.getItem("events"))
       
-    //  for (var x = 0; x < timeSlotClassArr.length; x++){
-    //    timeSlotClassArr[i].parent().find('textarea').text(retrievedEvents[i])
-    //  }
+     for (var x = 0; x < timeSlotClassArr.length; x++){
+       timeSlotClassArr[i].parent().find('textarea').text(retrievedEvents[i])
+     }
     console.log(timeSlotClassArr)
     } 
 
